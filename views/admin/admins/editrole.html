@@ -1,0 +1,42 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = name %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-9">
+						<form method="post" action="/admin/admins/roles/edit/{{ id }}/name" class="form-inline">
+							<label style="margin-right: 10px">Role name</label>
+							<input type="text" name="name" placeholder="{{ name }}" class="form-control" style="margin-right: 10px">
+							<input type="submit" value="Change" class="btn btn-primary">
+						</form>
+					</div>
+					<div class="col-xs-3">
+						<form method="post" action="/admin/admins/roles/edit/{{ id }}/delete" class="form-inline">
+							<input type="submit" value="Delete role" class="btn btn-danger pull-right">
+						</form>
+					</div>
+					<div class="col-xs-12">
+						<hr>
+					</div>
+					{% include "admin/admins/roleflags.html" %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		$(".autosave").change(function() {
+			$.post("/admin/admins/roles/edit/{{ id }}/flag/"+this.id, {value:this.checked}, "json");
+		});
+
+		{% if id == admin_roleid %}
+		$("#manage_admins").attr("disabled", true);
+		{% endif %}
+	</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = "New admin" %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<form method="post" action="" class="form">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Username</label>
+								<input type="text" name="username" placeholder="Username" class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Role</label>
+								<select name="role" class="form-control">
+								{% for r in roles %}
+									<option value="{{ r.id }}">{{ r.name }}</option>
+								{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>Password</label>
+								<input type="password" name="password" placeholder="Password" class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Repeat password</label>
+								<input type="password" name="password2" placeholder="Password" class="form-control">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<input type="submit" value="Create admin" class="btn btn-success center-block">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

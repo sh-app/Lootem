@@ -1,0 +1,43 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = "Users" %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<div class="form-inline form-group">
+			<label style="margin-right: 20px">Search users:</label>
+			<input type="text" placeholder="Username, ID or Email" id="search" class="form-control" size="40">
+		</div>
+		<table class="table table-stripped" id="usertable">
+			<tr>
+				<th>UserID</th>
+				<th>Username</th>
+				<th>Email address</th>
+				<th>Signup date</th>
+				<th>Last active</th>
+			</tr>
+			<tr>
+				<td colspan="5" class="text-center">Nothing to show, type something in the search box...</td>
+			</tr>
+		</table>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		$("#search").keyup(_.debounce(function() {
+			var search = _.trim( $(this).val() );
+
+			if(!search)
+				return;
+
+			search = encodeURIComponent(search);
+
+			$.get("/admin/users/search?q="+search, "json").done(function(data) {
+				nunjucks.render("admin/usertable.html", data, function(err, res) {
+					$("#usertable").html(res);
+				});
+			});
+		}, 500));
+	</script>
+{% endblock %}

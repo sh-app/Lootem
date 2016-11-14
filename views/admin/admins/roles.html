@@ -1,0 +1,30 @@
+{% extends "admin/admins/list.html" %}
+
+{% set page_title = "Admin roles" %}
+
+{% set active_tab = "roles" %}
+
+{% block navbutton %}
+	<a href="/admin/admins/roles/new" class="btn btn-success pull-right"><span class="fa fa-plus"></span> New role</a>
+{% endblock %}
+
+{% block tab %}
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-stripped">
+			<tr>
+				<th>Role name</th>
+				<th>Admins</th>
+				<th></th>
+			</tr>
+			{% for role in roles %}
+			<tr>
+				<td>{{ role.name }}</td>
+				<td>{{ role.count }}</td>
+				<td><a href="/admin/admins/roles/edit/{{ role.id }}">Edit role</a></td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+{% endblock %}

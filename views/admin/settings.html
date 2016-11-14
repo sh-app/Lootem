@@ -1,0 +1,30 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = "Settings" %}
+
+{% block content %}
+	<div class="col-sm-6 col-sm-offset-3">
+		<div class="panel panel-info">
+			<div class="panel-heading">Change password</div>
+			<div class="panel-body">
+				<form method="post" action="/admin/settings/password" class="form">
+					<div class="form-group">
+						<label>Old password</label>
+						<input type="password" name="oldpassword" placeholder="Old password" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>New password</label>
+						<input type="password" name="password" placeholder="New password" class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Repeat password</label>
+						<input type="password" name="password2" placeholder="New password" class="form-control">
+					</div>
+					<div class="text-right">
+						<input type="submit" value="Change" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+	<div class="popup" id="change-password-popup">
+		<a href="" class="close-popup">&times;</a>
+		<div class="container">
+			<h1>Change password</h1><br>
+			<div class="alert alert-danger" id="change-password-error"></div>
+			<div class="alert alert-success" id="change-password-success"></div>
+			<form method="post">
+				<div class="form-group">
+					<label for="change-password-old-password-input">Current password:</label>
+					<input type="password" class="form-control" id="change-password-old-password-input" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="change-password-password-input">New password:</label>
+					<input type="password" class="form-control" id="change-password-password-input" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="change-password-password2-input">Repeat password:</label>
+					<input type="password" class="form-control" id="change-password-password2-input" placeholder="Password">
+				</div>
+				<div class="clearfix">
+					<input type="submit" class="btn btn-success pull-right" value="Submit">
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>
+	<div class="popup" id="change-defaultbtc-popup">
+		<a href="" class="close-popup">&times;</a>
+		<div class="container">
+			<h1>Change bitcoin address</h1><br>
+			<div class="alert alert-danger" id="change-defaultbtc-error"></div>
+			<div class="alert alert-success" id="change-defaultbtc-success"></div>
+			<form method="post">
+				<div class="form-group">
+					<label for="change-defaultbtc-password-input">Current password:</label>
+					<input type="password" class="form-control" id="change-defaultbtc-password-input" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="change-defaultbtc-btc-input">Bitcoin address:</label>
+					<input type="text" class="form-control" id="change-defaultbtc-btc-input" placeholder="Bitcoin address">
+				</div>
+				<div class="clearfix">
+					<input type="submit" class="btn btn-success pull-right" value="Submit">
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>
+
+	<div class="popup" id="deposit-qr-popup">
+		<a href="" class="close-popup">&times;</a>
+		<div class="container text-center">
+			<h1>Your deposit address:</h1><br>
+			<div id="deposit-qr-addr" class="well well-sm"></div><br>
+			<img id="deposit-qr-img" src="" height="300" width="300"><br><br><br>
+		</div>
+	</div>

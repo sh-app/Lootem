@@ -1,0 +1,16 @@
+{% macro option(name, description, checked=false) %}
+<div class="col-sm-6" style="margin-top: 7px; margin-bottom: 7px">
+	<input type="checkbox" class="autosave" id="{{ name }}" name="flag[{{ name }}]" {{ 'checked' if checked }} {{ 'disabled' if disabled }}>
+	<b style="margin-left: 10px">{{ description }}</b>
+</div>
+{% endmacro %}
+
+{{ option("site_config", "Basic site configuration", role.site_config) }}
+{{ option("manage_admins", "Manage admin users and roles", role.manage_admins) }}
+<div class="col-xs-12">
+	<hr>
+</div>
+{{ option("user_options", "Change user switches (Yes/No settings)", role.user_options) }}
+{{ option("user_settings", "Change user settings (email, password, etc.)", role.user_settings) }}
+{{ option("user_sessions", "Manage user sessions", role.user_sessions) }}
+{{ option("user_transactions", "Manage user transactions", role.user_transactions) }}

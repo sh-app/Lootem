@@ -1,0 +1,32 @@
+{% extends "admin/users/user.html" %}
+
+{% set active_tab = "sessions" %}
+
+{% block tab %}
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-stripped">
+				<tr>
+					<th>Last login</th>
+					<th>IP Address</th>
+					<th>Location</th>
+					<th>Operating system</th>
+					<th>Browser</th>
+					<th>Online</th>
+					{% if flags.user_sessions %}<th></th>{% endif %}
+				</tr>
+				{% for session in sessions %}
+				<tr>
+					<td>{{ session.lastlogin }}</td>
+					<td>{{ session.ip }}</td>
+					<td>{{ session.location }}</td>
+					<td>{{ session.os }}</td>
+					<td>{{ session.browser }}</td>
+					<td>{{ 'Yes' if session.online else 'No' }}</td>
+					{% if flags.user_sessions %}<td><a href="/admin/users/{{ session.userid }}/sessions/kill/{{ session.id }}">Kill session</a></td>{% endif %}
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+{% endblock %}

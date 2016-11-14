@@ -1,0 +1,78 @@
+	<div class="popup" id="login-popup">
+		<a href="" class="close-popup">&times;</a>
+		<div class="container">
+			<h1>Log in</h1><br>
+			<div class="alert alert-danger" id="login-error"></div>
+			<form method="post">
+				<div class="form-group">
+					<label for="login-username-input">Username:</label>
+					<input type="text" class="form-control" id="login-username-input" placeholder="Username">
+				</div>
+				<div class="form-group">
+					<label for="login-password-input">Password:</label>
+					<input type="password" class="form-control" id="login-password-input" placeholder="Password">
+				</div>
+				<div class="clearfix">
+					<a href="javascript:" class="btn btn-default pull-left forgot-password-popup-link">Forgot password?</a>
+					<input type="submit" class="btn btn-success pull-right" value="Submit">
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>
+	<div class="popup" id="forgot-popup">
+		<a href="" class="close-popup">&times;</a>
+		<div class="container">
+			<h1>Reset password</h1><br>
+			<div class="alert alert-danger" id="forgot-error"></div>
+			<div class="alert alert-success" id="forgot-success"></div>
+			<form method="post">
+				<div class="form-group">
+					<label for="login-password-input">Email address:</label>
+					<input type="text" class="form-control" id="forgot-email-input" placeholder="Email">
+				</div>
+				<div class="clearfix">
+					<a href="javascript:" class="btn btn-default pull-left login-popup-link"><i class="glyphicon glyphicon-chevron-left"></i> Log in</a>
+					<input type="submit" class="btn btn-success pull-right" value="Submit">
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>
+	<div class="popup" id="signup-popup">
+		<a href="" class="close-popup">&times;</a>
+		<div class="container">
+			<h1>Sign up</h1><br>
+			<div class="alert alert-danger" id="signup-error"></div>
+			<form method="post">
+				<div class="form-group">
+					<label for="login-username-input">Username:</label>
+					<input type="text" class="form-control" id="signup-username-input" placeholder="Username">
+				</div>
+				<div class="form-group">
+					<label for="login-password-input">Password:</label>
+					<input type="password" class="form-control" id="signup-password-input" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="login-password2-input">Repeat password:</label>
+					<input type="password" class="form-control" id="signup-password2-input" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="login-email-input">Email address:</label>
+					<input type="text" class="form-control" id="signup-email-input" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="login-email2-input">Repeat email address:</label>
+					<input type="text" class="form-control" id="signup-email2-input" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<label for="login-email2-input">Emergency Bitcoin address (optional):</label> <i class="glyphicon glyphicon-question-sign tooltipped" style="position: relative; top: 4px; font-size: 1.3em; cursor: pointer" data-toggle="tooltip" data-placement="right" title="Your withdraw address in case of site shutdown"></i>
+					<input type="text" class="form-control" id="signup-btc-input" placeholder="Bitcoin address">
+				</div>
+				<div class="clearfix">
+					<input type="submit" class="btn btn-success pull-right" value="Submit">
+				</div>
+			</form>
+			<br>
+		</div>
+	</div>

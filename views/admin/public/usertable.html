@@ -1,0 +1,16 @@
+<tr>
+	<th>UserID</th>
+	<th>Username</th>
+	<th>Email address</th>
+	<th>Signup date</th>
+	<th>Last active</th>
+</tr>
+{% for user in users %}
+<tr>
+	<td><a href="/admin/users/{{ user.id }}">{{ user.id }}</a></td>
+	<td><a href="/admin/users/{{ user.id }}">{{ user.username }}</a></td>
+	<td><a href="/admin/users/{{ user.id }}">{{ user.email }}</a></td>
+	<td><a href="/admin/users/{{ user.id }}">{{ user.signupdate }}</a></td>
+	<td><a href="/admin/users/{{ user.id }}">{{ user.lastactive }}</a></td>
+</tr>
+{% endfor %}

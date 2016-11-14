@@ -1,0 +1,27 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = "New role" %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<form method="post" action="" class="form-inline">
+					<div class="row">
+						<div class="col-sm-10">
+							<label style="margin-right:10px">Role name</label>
+							<input type="text" name="name" placeholder="Role name" class="form-control">
+						</div>
+						<div class="col-sm-2">
+							<input type="submit" value="Create role" class="btn btn-success pull-right" style="display: block; width: 100%">
+						</div>
+						<div class="col-xs-12">
+							<hr>
+						</div>
+						{% include "admin/admins/roleflags.html" %}
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

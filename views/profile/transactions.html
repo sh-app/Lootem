@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}Transactions{% endblock %}
+
+{% block content %}
+	<div class="container content container-margin">
+		<div class="row">
+			<div class="col-xs-5 col-xs-offset-1">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Balance</h3>
+					</div>
+					<div class="panel-body">
+						<p>Current balance:</p>
+						<h2 class="nomargin" id="balance-holder" style="font-size: 37px; letter-spacing: 1px"><i class="glyphicon glyphicon-bitcoin" style="font-size: 0.8em"></i> <span id="current-balance">{{ balance }}</span></h2>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Deposit bitcoins</h3>
+					</div>
+					<div class="panel-body">
+						<p>Deposit funds to the following bitcoin address:</p>
+						{% if not depositAddress %}
+						<div class="alert alert-info" id="deposit-info">You don't have a deposit address, please create one.</div>
+						{% endif %}
+						<div class="well well-sm"{% if not depositAddress %} style="display:none;"{% endif %} id="deposit-address-holder"><span id="deposit-address">{{ depositAddress }}</span><a href="" class="deposit-qr tooltipped" data-toggle="tooltip" data-placement="top" title="Show the QR code for this address"><i class="glyphicon glyphicon-qrcode"></i></a></div>
+						<button id="generate-deposit-button" class="btn btn-info">New address</button>
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Withdraw bitcoins</h3>
+					</div>
+					<div class="panel-body">
+						<form id="withdraw-form">
+							<div class="alert alert-danger" id="withdraw-error"></div>
+							<div class="alert alert-success" id="withdraw-success"></div>
+							<div class="withdraw-form-group">
+								<i class="glyphicon glyphicon-bitcoin"></i>
+								<input type="text" id="withdraw-form-amount" class="form-control" placeholder="0.00000000" autocomplete="off" autocorrect="off">
+							</div>
+							<div class="withdraw-form-group">
+								<i class="glyphicon glyphicon-credit-card"></i>
+								<input type="text" id="withdraw-form-address" class="form-control" placeholder="Bitcoin address" autocomplete="off" autocorrect="off">
+							</div>
+							<input type="submit" class="btn btn-info" value="Withdraw">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-5">
+				<h2 class="nomargin" style="margin-bottom: 20px">Recent transactions</h2>
+				<table class="table" id="transaction-table">
+					<tr id="transaction-header">
+						<th>Date</th>
+						<th>Type</th>
+						<th>Amount</th>
+						<th>Reference</th>
+						<th>Status</th>
+					</tr>
+					{% for tx in transactions %}
+					{% include "public/tx.html" %}
+					{% else %}
+					<tr id="notx">
+						<td colspan="5"><div class="alert alert-info">No recent transactions...</div></td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script src="/js/profile.js"></script>
+{% endblock %}

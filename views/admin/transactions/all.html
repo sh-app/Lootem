@@ -1,0 +1,61 @@
+{% extends "admin/layout.html" %}
+
+{% set active_tab = active_tab | default("all") %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<ul class="nav nav-pills" style="margin-bottom:10px">
+			<li{% if active_tab == "all" %} class="active"{% endif %}><a href="/admin/transactions">All</a></li>
+			<li{% if active_tab == "requested" %} class="active"{% endif %}><a href="/admin/transactions/requested">Requested</a></li>
+		</ul>
+		{% block tab %}
+			<div class="row">
+				<div class="col-sm-12">
+					<table class="table table-stripped">
+						<tr>
+							<th>Date</th>
+							<th>Type</th>
+							<th>Amount</th>
+							<th>Reference</th>
+							<th>Status</th>
+							{% if flags.user_transactions %}<th></th>{% endif %}
+						</tr>
+						{% for tx in transactions %}
+						<tr>
+							<td>{{ tx.time }}</td>
+							<td>{{ tx.type }}</td>
+							<td>{{ tx.amount }}</td>
+							<td>{% if tx.transaction %}<a href="https://blockchain.info/tx/{{ tx.transaction }}" target="_blank">{{ tx.transaction|truncate(15) }}</a>{% else %}N/A{% endif %}</td>
+							<td><span class="label label-{% if tx.status|truncate(1,false,'') == 'C' %}success{% else %}warning{% endif %}">{{ tx.status }}</span></td>
+							{% if flags.user_transactions %}<td>
+							{% if tx.status == 'Requested'  %}
+								<form method="post" action="/admin/users/{{ tx.userid }}/transactions/confirm/{{ tx.id }}">
+									<input type="submit" value="Confirm" class="btn btn-xs btn-primary">
+								</form>
+							{% endif %}
+							</td>{% endif %}
+						</tr>
+						{% endfor %}
+					</table>
+					{% if pagination %}
+					<div class="text-center">
+						<ul class="pagination">
+						{% for page in pagination %}
+							{% if page.page == "prev" %}
+							<li{% if not page.enabled %} class="disabled"{% endif %}><a href="{{ page.url }}">&laquo;</a></li>
+							{% elif page.page == "next" %}
+							<li{% if not page.enabled %} class="disabled"{% endif %}><a href="{{ page.url }}">&raquo;</a></li>
+							{% elif page.page == "divider" %}
+							<li class="disabled"><span>...</span></li>
+							{% else %}
+							<li{% if page.active %} class="active"{% endif %}><a href="?page={{ page.page }}">{{ page.page }}</a></li>
+							{% endif %}
+						{% endfor %}
+						</ul>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

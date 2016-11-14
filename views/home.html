@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="container nopadding table-layout min-height-100">
+		<div class="row table-layout-row min-height-100">
+			<div class="col-xs-4 table-layout-cell">
+				
+			</div>
+			<div class="col-xs-4 table-layout-cell">
+				
+			</div>
+			<div class="col-xs-4 table-layout-cell" style="position: relative; border-left: 1px solid #ccc">
+				<div id="chat-window" style="padding: 0px 10px"><h1>Chat...<h1></div>
+				<form class="form-inline" id="chat-input" method="post">
+					<input type="text" class="form-control" id="chat-message">
+					<input type="submit" class="btn btn-primary" id="chat-send" value="Send">
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

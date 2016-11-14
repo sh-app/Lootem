@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>{% block title %}Bitcoin gambling{% endblock %}</title>
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/custom.css" rel="stylesheet">
+</head>
+<body>
+	<div id="popup-background"></div>
+	{% if not loggedin %}
+	{% include "popups-login.html" %}
+	{% else %}
+	{% include "popups-loggedin.html" %}
+	{% endif %}
+
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Bitcoin Game</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				{% if loggedin %}
+				<li><p class="navbar-text">Welcome, <b>{{ current_username }}!</b></p></li>
+				<li><a href="/profile"><i class="glyphicon glyphicon-star-empty"></i> Account</a></li>
+				<li><a href="/profile/transactions"><i class="glyphicon glyphicon-bitcoin"></i> Transactions</a></li>
+				<li><a href="/profile/gamehistory"><i class="glyphicon glyphicon-knight"></i> Game history</a></li>
+				<li><a href="/logout">Log out</a></li>
+				{% else %}
+				<li><a class="signup-popup-link" href="javascript:">Sign up</a></li>
+				<li><a class="login-popup-link" href="javascript:">Log in</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+
+	{% block content %}
+	{% endblock %}
+
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/nunjucks.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/socket.js"></script>
+	<script src="/js/common.js"></script>
+	<script src="/js/popups.js"></script>
+	{% block scripts %}{% endblock %}
+</body>
+</html>

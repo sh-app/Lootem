@@ -1,0 +1,202 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	padding-top: 50px;
+}
+
+#popup-background {
+	display: none;
+	background: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 2000;
+}
+
+.popup {
+	display: none;
+	position: fixed;
+	width: 500px;
+	top: 30px;
+	left: 50%;
+	margin-left: -250px;
+	background: #fff;
+	border-radius: 4px;
+
+	z-index: 2001;
+}
+
+.popup .close-popup {
+	position: absolute;
+	display: block;
+	top: 0;
+	right: 0;
+	padding: 10px;
+	padding-top: 0;
+	padding-bottom: 5px;
+	font-size: 25px;
+	line-height: 1em;
+	color: #ccc;
+	text-decoration: none;
+}
+
+.popup .alert {
+	display: none;
+}
+
+.container {
+	width: 100%;
+	overflow: hidden;
+}
+
+.content {
+	min-width: 980px;
+}
+
+.nopadding {
+	padding: 0;
+}
+
+.nomargin {
+	margin: 0;
+}
+
+.container-margin {
+	margin-top: 30px;
+}
+
+.min-height-100 {
+	height: 100%;
+}
+
+.height-100 {
+	height: 100%;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+.table-layout {
+	display: table;
+}
+
+.table-layout-row {
+	display: table-row;
+}
+
+.table-layout-cell {
+	display: table-cell;
+	float: none;
+	overflow-y: auto;
+}
+
+#chat-window {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 60px;
+	background: #eee;
+}
+
+#chat-input {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	padding: 10px;
+}
+
+#chat-input #chat-message {
+	width: 78%;
+}
+
+#chat-input #chat-send {
+	width: 20%;
+}
+
+.profile-table {
+	margin-top: 20px;
+	font-size: 20px;
+	width: 100%;
+}
+
+.profile-table tr {
+	border-bottom: 1px solid #aaa;
+}
+
+.profile-table th {
+	width: 38%;
+}
+
+.profile-table td, .profile-table th {
+	padding: 15px 10px;
+}
+
+.profile-table td:nth-child(3) {
+	width: 80px;
+	padding: 0;
+}
+
+.withdraw-form-group {
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.withdraw-form-group input {
+	padding-left: 30px;
+}
+
+.withdraw-form-group .glyphicon {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 10px;
+	line-height: 34px;
+}
+
+.deposit-qr {
+	float: right;
+	color: #333;
+	position: relative;
+	top: -5px;
+	font-size: 25px;
+	text-decoration: none;
+}
+
+.deposit-qr:hover {
+	color: #000;
+}
+
+#withdraw-form .alert {
+	display: none;
+}
+
+.text-animated {
+	transition: color 500ms linear;
+	-webkit-transition: color 500ms linear;
+	-moz-transition: color 500ms linear;
+	-o-transition: color 500ms linear;
+}
+
+.bg-animated {
+	transition: background-color 500ms linear;
+	-webkit-transition: background-color 500ms linear;
+	-moz-transition: background-color 500ms linear;
+	-o-transition: background-color 500ms linear;
+}
+
+.flash-text {
+	color: orangered !important;
+}
+
+.flash-bg {
+	background-color: orangered !important;
+}

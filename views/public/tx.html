@@ -1,0 +1,7 @@
+<tr data-txid="{{ tx.id }}" class="transaction-item">
+	<td>{{ tx.date }}</td>
+	<td>{{ tx.type }}</td>
+	<td>{% if tx.amount > 0 %}+{% endif %}{{ tx.amount }}</td>
+	<td>{% if tx.transaction %}<a href="https://blockchain.info/tx/{{ tx.transaction }}" target="_blank">{{ tx.transaction|truncate(10) }}</a>{% else %}N/A{% endif %}</td>
+	<td><span class="label label-{% if tx.status|truncate(1,false,'') == 'C' %}success{% else %}warning{% endif %}">{{ tx.status }}</span></td>
+</tr>

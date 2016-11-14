@@ -1,0 +1,45 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = "Admins" %}
+
+{% set active_tab = active_tab | default("admins") %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-sm-9">
+				<ul class="nav nav-pills" style="margin-bottom:10px">
+					<li{% if active_tab == "admins" %} class="active"{% endif %}><a href="/admin/admins">Admins</a></li>
+					<li{% if active_tab == "roles" %} class="active"{% endif %}><a href="/admin/admins/roles">Roles</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-3">
+			{% block navbutton %}
+				<a href="/admin/admins/new" class="btn btn-success pull-right"><span class="fa fa-plus"></span> New admin</a>
+			{% endblock %}
+			</div>
+		</div>
+		{% block tab %}
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-stripped">
+					<tr>
+						<th>Username</th>
+						<th>Role</th>
+						<th>Last login</th>
+						<th></th>
+					</tr>
+					{% for admin in admins %}
+					<tr>
+						<td>{{ admin.username }}</td>
+						<td>{{ admin.role|default("None") }}</td>
+						<td>{{ admin.lastlogin }}</td>
+						<td><a href="/admin/admins/edit/{{ admin.id }}">Edit admin</a></td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+		{% endblock %}
+	</div>
+{% endblock %}

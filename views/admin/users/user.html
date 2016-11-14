@@ -1,0 +1,131 @@
+{% extends "admin/layout.html" %}
+
+{% set page_title = username %}
+
+{% set active_tab = active_tab | default("basic") %}
+
+{% block content %}
+	<div class="col-xs-12">
+		<ul class="nav nav-pills" style="margin-bottom:10px">
+			<li{% if active_tab == "basic" %} class="active"{% endif %}><a href="/admin/users/{{ id }}">Basic information</a></li>
+			<li{% if active_tab == "sessions" %} class="active"{% endif %}><a href="/admin/users/{{ id }}/sessions">Active sessions</a></li>
+			<li{% if active_tab == "transactions" %} class="active"{% endif %}><a href="/admin/users/{{ id }}/transactions">Transactions</a></li>
+		</ul>
+		{% block tab %}
+		<div class="panel panel-primary">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-sm-7">
+						<table class="details-table">
+							<tr>
+								<td><b>UserID</b></td>
+								<td># {{ id }}</td>
+							</tr>
+							<tr>
+								<td><b>Username</b></td>
+								<td>{{ username }}</td>
+							</tr>
+							<tr>
+								<td><b>Email</b></td>
+								<td>{{ email }}</td>
+							</tr>
+							<tr>
+								<td><b>Balance</b></td>
+								<td>{{ balance }} BTC</td>
+							</tr>
+							<tr>
+								<td><b>Emergency withdraw address</b></td>
+								<td>{{ defaultBTC|default('None',true) }}</td>
+							</tr>
+							<tr>
+								<td><b>Deposit address</b></td>
+								<td>{{ currentBTC|default('None',true) }}</td>
+							</tr>
+							<tr>
+								<td><b>Signup date</b></td>
+								<td>{{ signupdate }}</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-sm-5">
+						<table class="details-table">
+							<tr>
+								<td><b>Allow login</b></td>
+								<td><input {{ 'disabled' if not flags.user_options }} type="checkbox" class="autosave" id="allow_login" {{ 'checked' if allow_login }}></td>
+							</tr>
+							<tr>
+								<td><b>Allow betting in games</b></td>
+								<td><input {{ 'disabled' if not flags.user_options }} type="checkbox" class="autosave" id="allow_games" {{ 'checked' if allow_games }}></td>
+							</tr>
+							<tr>
+								<td><b>Allow withdrawing coins</b></td>
+								<td><input {{ 'disabled' if not flags.user_options }} type="checkbox" class="autosave" id="allow_withdraws" {{ 'checked' if allow_withdraws }}></td>
+							</tr>
+							<tr>
+								<td><b>Automatically process all withdrawal requests</b></td>
+								<td><input {{ 'disabled' if not flags.user_options }} type="checkbox" class="autosave" id="always_allow_withdraws" {{ 'checked' if always_allow_withdraws }}></td>
+							</tr>
+						</table>
+					</div>
+					{% if flags.user_settings %}
+					<div class="col-sm-12">
+						<hr>
+					</div>
+					<div class="col-sm-6">
+						<form method="post" action="/admin/users/{{ id }}/email" class="form">
+							<label>Change email address</label>
+							<div class="form-group">
+								<input type="text" name="email" placeholder="Email address" class="form-control">
+							</div>
+							<div class="clearfix">
+								<input type="submit" value="Change" class="btn btn-primary pull-right">
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-6">
+						<br><br>
+						<form method="post" action="/admin/users/{{ id }}/newdeposit" class="form">
+							<input type="submit" value="Generate new deposit address" class="btn btn-primary center-block">
+						</form>
+						<br><br>
+					</div>
+					<div class="col-sm-6">
+						<form method="post" action="/admin/users/{{ id }}/password" class="form">
+							<label>Change password</label>
+							<div class="form-group">
+								<input type="password" name="password" placeholder="New password" class="form-control">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password2" placeholder="Repeat password" class="form-control">
+							</div>
+							<div class="clearfix">
+								<input type="submit" value="Change" class="btn btn-primary pull-right">
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-6">
+						<form method="post" action="/admin/users/{{ id }}/defaultbtc" class="form">
+							<label>Change emergency address</label>
+							<div class="form-group">
+								<input type="text" name="btc" placeholder="Bitcoin address" class="form-control">
+							</div>
+							<div class="clearfix">
+								<input type="submit" value="Change" class="btn btn-primary pull-right">
+							</div>
+						</form>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		$(".autosave").change(function() {
+			$.post("/admin/users/{{ id }}/option/"+this.id, {value:this.checked}, "json");
+		});
+	</script>
+{% endblock %}

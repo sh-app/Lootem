@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block content %}
+	<div class="container content">
+		<div class="row">
+			<div class="col-xs-8 col-xs-offset-2">
+				<table class="profile-table">
+					<tr>
+						<th>UserID:</th>
+						<td># {{ userid }}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Username:</th>
+						<td>{{ username }}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Password:</th>
+						<td>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</td>
+						<td><a href="javascript:" class="btn btn-default change-password-popup-link">Change</a></td>
+					</tr>
+					<tr>
+						<th>Email address:</th>
+						<td>{{ email }}</td>
+						<td></td>
+					</tr>
+					<tr>
+						<th>Emergency withdraw address</th>
+						<td id="profile-defaultbtc">{% if defaultbtc %}{{ defaultbtc }}{% else %}None{% endif %}</td>
+						<td><a href="javascript:" class="btn btn-default change-defaultbtc-popup-link">Change</a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
